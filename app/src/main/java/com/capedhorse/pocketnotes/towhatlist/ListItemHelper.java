@@ -7,22 +7,20 @@ import java.util.List;
 import io.realm.Realm;
 import io.realm.RealmResults;
 
-public class ListHelper {
+public class ListItemHelper {
     Realm realm;
 
-    //constructor
-    public ListHelper(Realm realm) {
+    public ListItemHelper(Realm realm) {
         this.realm = realm;
     }
 
-    //get all data for view in activity
-    public List<ListModel> getAllData(){
-        RealmResults<ListModel> results = realm.where(ListModel.class).findAll();
+    public List<ListItemModel> getListItem(String category) {
+        RealmResults<ListItemModel> results = realm.where(ListItemModel.class).equalTo("category", category).findAll();
         return results;
     }
 
     //save function
-    public void save(final ListModel listModel) {
+    public void save(final ListItemModel listItemModel) {
         realm.executeTransaction(new Realm.Transaction() {
             @Override
             public void execute(Realm realm) {
@@ -35,8 +33,8 @@ public class ListHelper {
                     } else {
                         nextId = currentId.intValue() + 1;
                     }
-                    listModel.setId(nextId);
-                    ListModel model = realm.copyToRealm(listModel);
+                    listItemModel.setId(nextId);
+                    ListItemModel model = realm.copyToRealm(listItemModel);
                 } else {
                     Log.e("Error", "Database not found");
                 }
@@ -45,16 +43,17 @@ public class ListHelper {
     }
 
     //update function
-    public void update(final Integer id, final String name) {
+    public void update(final Integer id, final String name, final Boolean done) {
         realm.executeTransactionAsync(new Realm.Transaction() {
             @Override
             public void execute(Realm realm) {
 
-                ListModel model = realm.where(ListModel.class)
+                ListItemModel model = realm.where(ListItemModel.class)
                         .equalTo("id", id)
                         .findFirst();
                 model.setId(id);
                 model.setName(name);
+                model.setDone(done);
 
             }
         }, new Realm.Transaction.OnSuccess() {
@@ -72,7 +71,7 @@ public class ListHelper {
 
     //delete function
     public void delete(Integer id){
-        final RealmResults<ListModel> model = realm.where(ListModel.class)
+        final RealmResults<ListItemModel> model = realm.where(ListItemModel.class)
                 .equalTo("id", id)
                 .findAll();
         realm.executeTransaction(new Realm.Transaction() {

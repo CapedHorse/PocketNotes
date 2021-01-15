@@ -3,7 +3,7 @@ package com.capedhorse.pocketnotes.towhatlist;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
-public class List extends RealmObject {
+public class ListModel extends RealmObject {
 
     public Integer getId() {
         return id;
@@ -13,16 +13,16 @@ public class List extends RealmObject {
         this.id = id;
     }
 
-    public Integer getName() {
+    public String getName() {
         return name;
     }
 
-    public void setName(Integer name) {
+    public void setName(String name) {
         this.name = name;
     }
 
     @PrimaryKey
     private Integer id;
     @PrimaryKey
-    private Integer name;
+    private String name;
 }
