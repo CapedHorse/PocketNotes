@@ -18,9 +18,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginVertical="30dp"
-            android:text="Pocket Notes"
+            android:text="POCKET NOTES"
             android:fontFamily="@font/title"
-            android:textSize="64dp"
+            android:textSize="60dp"
             android:textColor="#EB4334"
             android:shadowColor="#49448B"
             android:shadowRadius="5"
@@ -62,15 +62,8 @@
                     android:shadowDx="2"
                     android:shadowDy="1"
                     android:text="To-What List"/>
-
-
             </LinearLayout>
-
-
-
-
         </LinearLayout>
-
     </LinearLayout>
 
 

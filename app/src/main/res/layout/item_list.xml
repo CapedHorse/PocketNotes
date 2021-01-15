@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="10dp"
+    app:cardCornerRadius="5dp">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:background="@color/red"
+        android:padding="10dp">
+
+        <Button
+            android:id="@+id/btnEditList"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginRight="30dp"
+            android:background="@drawable/yes_icon"
+            android:visibility="gone"/>
+
+        <TextView
+            android:id="@+id/tvListName"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/content"
+            android:textColor="#000000"
+            android:text="List Name"
+            android:textSize="60dp"
+            android:textStyle="bold"
+            android:visibility="visible"/>
+
+        <EditText
+            android:id="@+id/inputListName"
+            android:padding="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="List Name"
+            android:textColor="#000000"
+            android:textSize="50dp"
+            android:fontFamily="@font/content"
+            android:background="#ffffff"
+            android:visibility="gone"/>
+
+        <Button
+            android:id="@+id/btnDeleteList"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="30dp"
+            android:background="@drawable/delete_icon"
+            android:visibility="gone"/>
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
