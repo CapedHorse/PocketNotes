@@ -93,6 +93,16 @@ public class RealmHelper {
 
     }
 
+    public void deleteItemOnList(int categoryId){
+
+        realm.beginTransaction();
+        RealmResults<ListItemModel> model = realm.where(ListItemModel.class)
+                .equalTo("categoryId", categoryId)
+                .findAll();
+        model.deleteAllFromRealm();
+        realm.commitTransaction();
+    }
+
     public void deleteItem(int id){
 
         realm.beginTransaction();
@@ -101,7 +111,8 @@ public class RealmHelper {
                 .findFirst();
         model.deleteFromRealm();
         realm.commitTransaction();
-
     }
+
+
 
 }

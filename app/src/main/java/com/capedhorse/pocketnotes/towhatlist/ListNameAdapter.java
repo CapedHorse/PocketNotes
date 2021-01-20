@@ -1,7 +1,9 @@
 package com.capedhorse.pocketnotes.towhatlist;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -96,10 +98,29 @@ public class ListNameAdapter extends RecyclerView.Adapter<ListNameAdapter.MyView
             @Override
             public void onClick(View v) {
 
-                realmHelper.deleteList(model.getId());
+                AlertDialog.Builder warning = new AlertDialog.Builder(context)
+                        .setTitle("Are you sure wanna delete this list?")
+                        .setMessage("Everything inside the list will be deleted")
+                        .setPositiveButton("Yea", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                String listName = model.getName();
+                                realmHelper.deleteItemOnList(model.getId());
+                                realmHelper.deleteList(model.getId());
 
-                notifyDataSetChanged();
-                Toast.makeText(context, "Deleted the list :(", Toast.LENGTH_SHORT).show();
+                                notifyDataSetChanged();
+
+                                dialog.cancel();
+
+                                Toast.makeText(context, "Deleted " + listName + " :(", Toast.LENGTH_SHORT).show();
+                            }
+                        }).setNegativeButton("Nah", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        });
+                warning.show();
             }
         });
 

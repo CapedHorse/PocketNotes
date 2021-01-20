@@ -17,8 +17,8 @@
         android:padding="10dp">
         <Button
             android:id="@+id/btnEditList"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_marginRight="30dp"
             android:background="@drawable/edit_icon"
             android:backgroundTint="@color/darkgreen"
@@ -27,8 +27,8 @@
 
         <Button
             android:id="@+id/btnConfirmEdit"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_marginRight="30dp"
             android:background="@drawable/yes_icon"
             android:backgroundTint="@color/blue"
@@ -42,7 +42,7 @@
             android:fontFamily="@font/content"
             android:textColor="#000000"
             android:text="List Name"
-            android:textSize="60dp"
+            android:textSize="50dp"
             android:textStyle="bold"
             android:textAllCaps="true"
             android:visibility="visible"/>
@@ -63,8 +63,8 @@
 
         <Button
             android:id="@+id/btnDeleteList"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_marginLeft="30dp"
             android:background="@drawable/delete_icon"
             android:backgroundTint="@color/red"

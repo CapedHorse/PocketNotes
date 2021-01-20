@@ -1,7 +1,9 @@
 package com.capedhorse.pocketnotes.towhatlist;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -70,11 +72,28 @@ public class ListItemAdapter extends RecyclerView.Adapter<ListItemAdapter.MyView
         holder.btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                realmHelper.deleteItem(model.getId());
+                AlertDialog.Builder warning = new AlertDialog.Builder(context)
+                        .setTitle("Are you sure wanna delete this item?")
+                        .setMessage("You can still add them again tho.")
+                        .setPositiveButton("Yea", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                String itemName = model.getName();
+                                realmHelper.deleteItem(model.getId());
 
-                notifyDataSetChanged();
+                                notifyDataSetChanged();
 
-                Toast.makeText(context, "Deleted the item.", Toast.LENGTH_SHORT).show();
+                                dialog.cancel();
+
+                                Toast.makeText(context, itemName + " is deleted.", Toast.LENGTH_SHORT).show();
+                            }
+                        }).setNegativeButton("Nah", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        });
+                warning.show();
             }
         });
     }

@@ -20,9 +20,11 @@
             android:id="@+id/doneCheck"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:scaleX="2"
+            android:scaleY="2"
             android:layout_marginRight="50dp"
             android:buttonTint="@color/darkblue"
-            android:checked="true"
+            android:checked="false"
             />
 
 
@@ -33,7 +35,7 @@
             android:fontFamily="@font/content"
             android:textColor="#000000"
             android:text="List Name"
-            android:textSize="36dp"
+            android:textSize="40dp"
             android:textStyle="bold"
             android:textAllCaps="true"
             android:visibility="visible"/>
