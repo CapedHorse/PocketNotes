@@ -24,7 +24,7 @@
             android:shadowDy="3"
             android:shadowRadius="5"
             android:text="LIST"
-            android:textColor="#8874E3"
+            android:textColor="@color/darkorange"
             android:textSize="64dp"
             android:textStyle="bold" />
 
@@ -46,14 +46,12 @@
 
         <Button
             android:id="@+id/btnAddList"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:background="#8558D5"
-            android:fontFamily="@font/content"
-            android:text="Add More List"
-            android:textSize="36dp"
-            android:textStyle="bold" />
+            android:layout_width="wrap_content"
+            android:layout_height="88dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/add_icon"
+            android:backgroundTint="#2F50F5"
+            android:fontFamily="@font/content"  />
 
     </LinearLayout>
 </LinearLayout>

@@ -3,7 +3,6 @@ package com.capedhorse.pocketnotes.towhatlist;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,19 +11,15 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.capedhorse.pocketnotes.ListActivity;
 import com.capedhorse.pocketnotes.ListItemActivity;
 import com.capedhorse.pocketnotes.R;
 import com.capedhorse.pocketnotes.RealmConfig;
 import com.capedhorse.pocketnotes.RealmHelper;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import io.realm.Realm;
-import io.realm.RealmConfiguration;
 
 public class ListNameAdapter extends RecyclerView.Adapter<ListNameAdapter.MyViewHolder> {
     private List<ListModel> listModels;
@@ -45,7 +40,7 @@ public class ListNameAdapter extends RecyclerView.Adapter<ListNameAdapter.MyView
     @NonNull
     @Override
     public ListNameAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.content_list, parent, false);
         return new MyViewHolder(v);
     }
 
