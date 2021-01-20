@@ -29,18 +29,18 @@ public class ListItemModel extends RealmObject {
         this.name = name;
     }
 
-    public String getCategory() {
-        return category;
+    public Integer getCategoryId() {
+        return categoryId;
     }
 
-    public void setCategory(String category) {
-        this.category = category;
+    public void setCategoryId(Integer categoryId) {
+        this.categoryId = categoryId;
     }
 
     @PrimaryKey
     private Integer id;
     private Boolean done;
     private String name;
-    private String category;
+    private Integer categoryId;
 
 }

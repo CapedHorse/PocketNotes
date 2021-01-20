@@ -5,11 +5,11 @@ import io.realm.annotations.PrimaryKey;
 
 public class ListModel extends RealmObject {
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -22,7 +22,7 @@ public class ListModel extends RealmObject {
     }
 
     @PrimaryKey
-    private Integer id;
-    @PrimaryKey
+    private int id;
+
     private String name;
 }

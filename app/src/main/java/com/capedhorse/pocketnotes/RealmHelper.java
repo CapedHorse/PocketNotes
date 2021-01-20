@@ -23,23 +23,27 @@ public class RealmHelper {
 
     //get all data for view in activity
     public List<ListModel> getListData(){
+        realm.beginTransaction();
         RealmResults<ListModel> results = realm.where(ListModel.class).findAll();
+        realm.commitTransaction();
         return results;
     }
 
-    public List<ListItemModel> getItemData(String category) {
-        RealmResults<ListItemModel> results = realm.where(ListItemModel.class).equalTo("category", category).findAll();
+    public List<ListItemModel> getItemData(int categoryId) {
+        RealmResults<ListItemModel> results = realm.where(ListItemModel.class).equalTo("id", categoryId).findAll();
         return results;
     }
 
     //next id
     public long getNextId(RealmModel realmModel){
+
         if (realm.where(realmModel.getClass()).count() !=0){
             long id = realm.where(realmModel.getClass()).max("id").longValue();
             return id +1;
         }else{
             return 1;
         }
+
     }
 
     //insert
@@ -47,7 +51,6 @@ public class RealmHelper {
         realm.beginTransaction();
         realm.copyToRealm(catatan);
         realm.commitTransaction();
-        realm.close();
     }
 
     //update
@@ -55,9 +58,30 @@ public class RealmHelper {
         realm.beginTransaction();
         realm.copyToRealmOrUpdate(model);
         realm.commitTransaction();
-
-        realm.close();
     }
+
+    public void updateList(final Integer id, final String name){
+        realm.executeTransactionAsync( new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                ListModel model = realm.where(ListModel.class)
+                        .equalTo("id", id)
+                        .findFirst();
+                model.setName(name);
+            }
+        }, new Realm.Transaction.OnSuccess() {
+            @Override
+            public void onSuccess() {
+                Log.e("Success", "onSuccess: Update SUcessfully");
+            }
+        }, new Realm.Transaction.OnError() {
+            @Override
+            public void onError(Throwable error) {
+                error.printStackTrace();
+            }
+        });
+    }
+
 
     //delete function
     public void deleteData(int id, RealmObject realmModel){
@@ -65,7 +89,18 @@ public class RealmHelper {
         RealmObject catatan = realm.where(realmModel.getClass()).equalTo("id",id).findFirst();
         catatan.deleteFromRealm();
         realm.commitTransaction();
-        realm.close();
+
+    }
+
+    public void deleteList(int id){
+
+        realm.beginTransaction();
+        ListModel model = realm.where(ListModel.class)
+                .equalTo("id", id)
+                .findFirst();
+        model.deleteFromRealm();
+        realm.commitTransaction();
+
     }
 
 }

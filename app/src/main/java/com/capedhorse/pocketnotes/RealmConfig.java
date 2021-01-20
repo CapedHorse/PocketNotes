@@ -19,4 +19,9 @@ public class RealmConfig extends Application {
         Realm.setDefaultConfiguration(realmConfiguration);
     }
 
+    public static Realm newRealmInstance() {
+        RealmConfiguration configuration = new RealmConfiguration.Builder().build();
+        return Realm.getInstance(configuration);
+    }
+
 }
