@@ -30,7 +30,7 @@ public class RealmHelper {
     }
 
     public List<ListItemModel> getItemData(int categoryId) {
-        RealmResults<ListItemModel> results = realm.where(ListItemModel.class).equalTo("id", categoryId).findAll();
+        RealmResults<ListItemModel> results = realm.where(ListItemModel.class).equalTo("categoryId", categoryId).findAll();
         return results;
     }
 
@@ -82,20 +82,21 @@ public class RealmHelper {
         });
     }
 
-
-    //delete function
-    public void deleteData(int id, RealmObject realmModel){
-        realm.beginTransaction();
-        RealmObject catatan = realm.where(realmModel.getClass()).equalTo("id",id).findFirst();
-        catatan.deleteFromRealm();
-        realm.commitTransaction();
-
-    }
-
     public void deleteList(int id){
 
         realm.beginTransaction();
         ListModel model = realm.where(ListModel.class)
+                .equalTo("id", id)
+                .findFirst();
+        model.deleteFromRealm();
+        realm.commitTransaction();
+
+    }
+
+    public void deleteItem(int id){
+
+        realm.beginTransaction();
+        ListItemModel model = realm.where(ListItemModel.class)
                 .equalTo("id", id)
                 .findFirst();
         model.deleteFromRealm();

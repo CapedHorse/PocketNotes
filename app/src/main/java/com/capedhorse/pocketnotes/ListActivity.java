@@ -24,7 +24,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ListActivity extends AppCompatActivity {
-    Realm realm;
     RealmHelper realmHelper = new RealmHelper(RealmConfig.newRealmInstance());
     RecyclerView recyclerView;
     ListNameAdapter listAdapter;
@@ -39,7 +38,7 @@ public class ListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
 
-        recyclerView = findViewById(R.id.recyclerView);
+        recyclerView = findViewById(R.id.recyclerViewList);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
@@ -53,7 +52,7 @@ public class ListActivity extends AppCompatActivity {
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(ListActivity.this,"Adding new list", Toast.LENGTH_SHORT).show();
+
                 final EditText input = new EditText(ListActivity.this);
 
                 AlertDialog.Builder add = new AlertDialog.Builder(ListActivity.this)
@@ -64,9 +63,13 @@ public class ListActivity extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 ListModel listModel = new ListModel();
+
                                 listModel.setId((int) realmHelper.getNextId(listModel));
                                 listModel.setName(input.getText().toString());
                                 realmHelper.insertData(listModel);
+
+                                Toast.makeText(ListActivity.this,"New list added.", Toast.LENGTH_SHORT).show();
+
                                 dialog.cancel();
                             }
                         })
@@ -79,10 +82,6 @@ public class ListActivity extends AppCompatActivity {
                 add.show();
             }
         });
-
-
-
-
 
     }
 

@@ -28,9 +28,6 @@ public class ListNameAdapter extends RecyclerView.Adapter<ListNameAdapter.MyView
 
     RealmHelper realmHelper = new RealmHelper(RealmConfig.newRealmInstance());
 
-    public int itemPos;
-
-
     public ListNameAdapter(Context context, List<ListModel> listModels) {
         this.context = context;
         this.listModels = listModels;
@@ -43,8 +40,6 @@ public class ListNameAdapter extends RecyclerView.Adapter<ListNameAdapter.MyView
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.content_list, parent, false);
         return new MyViewHolder(v);
     }
-
-
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -109,10 +104,6 @@ public class ListNameAdapter extends RecyclerView.Adapter<ListNameAdapter.MyView
         });
 
 
-    }
-
-    public int getItemPos() {
-        return itemPos;
     }
 
     @Override
